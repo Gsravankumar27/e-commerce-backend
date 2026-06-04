@@ -37,6 +37,11 @@ public class Product {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false) // Database lo 'category_id' ane Foreign Key generate avtundi
+    @com.fasterxml.jackson.annotation.JsonBackReference // Infinite loop prevent cheyadానికి
+    private Category category;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -63,4 +68,7 @@ public class Product {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    // Getter and Setter for category
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
 }

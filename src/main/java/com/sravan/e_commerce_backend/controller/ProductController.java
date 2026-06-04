@@ -1,5 +1,6 @@
 package com.sravan.e_commerce_backend.controller;
 
+import com.sravan.e_commerce_backend.model.Category;
 import com.sravan.e_commerce_backend.model.Product;
 import com.sravan.e_commerce_backend.service.ProductService;
 import jakarta.validation.Valid;
@@ -17,9 +18,17 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private com.sravan.e_commerce_backend.service.CategoryService categoryService;
+
     // 1. POST API: ప్రొడక్ట్‌ను క్రియేట్ చేయడానికి (URL: http://localhost:8081/api/products)
     @PostMapping
     public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product) {
+        // ఒకవేళ ప్రొడక్ట్ JSON లో కేటగిరీ ఐడీ పంపితే, ఆ కేటగిరీని వెతికి ప్రొడక్ట్‌కి లింక్ చేస్తాం
+        if (product.getCategory() != null && product.getCategory().getId() != null) {
+            Category category = categoryService.getCategoryById(product.getCategory().getId());
+            product.setCategory(category);
+        }
         Product savedProduct = productService.saveProduct(product);
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
