@@ -14,7 +14,7 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    // 1. POST API: కార్ట్ లోకి ఐటమ్ యాడ్ చేయడానికి (URL: http://localhost:8081/api/carts/1/add?productId=1&quantity=2)
+    // 1. POST API
     @PostMapping("/{userId}/add")
     public ResponseEntity<Cart> addItemToCart(
             @PathVariable Long userId,
@@ -25,13 +25,13 @@ public class CartController {
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }
 
-    // 2. GET API: యూజర్ ఐడీ బట్టి కార్ట్ చూడటానికి (URL: http://localhost:8081/api/carts/1)
+    // 2. GET API
     @GetMapping("/{userId}")
     public ResponseEntity<Cart> getCartByUserId(@PathVariable Long userId) {
         Cart cart = cartService.getCartByUserId(userId);
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
-    // 3. PUT API: క్వాంటిటీ అప్‌డేట్ చేయడానికి (URL: http://localhost:8081/api/carts/1/update?productId=1&quantity=5)
+    // 3. PUT API
     @PutMapping("/{userId}/update")
     public ResponseEntity<Cart> updateCartItemQuantity(
             @PathVariable Long userId,
@@ -42,7 +42,7 @@ public class CartController {
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }
 
-    // 4. DELETE API: కార్ట్ నుండి ప్రొడక్ట్ తీసేయడానికి (URL: http://localhost:8081/api/carts/1/remove?productId=1)
+    // 4. DELETE API
     @DeleteMapping("/{userId}/remove")
     public ResponseEntity<Cart> removeItemFromCart(
             @PathVariable Long userId,

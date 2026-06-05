@@ -38,8 +38,8 @@ public class Product {
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false) // Database lo 'category_id' ane Foreign Key generate avtundi
-    @com.fasterxml.jackson.annotation.JsonBackReference // Infinite loop prevent cheyadానికి
+    @JoinColumn(name = "category_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonBackReference
     private Category category;
 
     @PrePersist

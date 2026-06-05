@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    // ఒక యూజర్ ఆర్డర్ హిస్టరీ మొత్తం చూడటానికి (Derived Query)
+
     List<Order> findByUserId(Long userId);
 }

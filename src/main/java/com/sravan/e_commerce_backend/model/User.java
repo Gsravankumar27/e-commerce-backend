@@ -27,7 +27,7 @@ public class User {
     @NotBlank(message = "Password is mandatory")
     @Size(min = 6, message = "Password must be at least 6 characters long")
     @Column(nullable = false)
-    private String password; // Real-time lo dinni encode chestam, ippudu normal ga uncham.
+    private String password;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

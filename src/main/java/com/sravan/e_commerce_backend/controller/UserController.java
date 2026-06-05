@@ -17,14 +17,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // 1. POST API: User Registration (URL: http://localhost:8081/api/users/signup)
+    // 1. POST API
     @PostMapping("/signup")
     public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
         User registeredUser = userService.registerUser(user);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
-    // 2. POST API: User Login (URL: http://localhost:8081/api/users/login)
+    // 2. POST API
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginRequest) {
         String username = loginRequest.get("username");
@@ -34,7 +34,7 @@ public class UserController {
             User user = userService.loginUser(username, password);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (RuntimeException e) {
-            // లాగిన్ ఫెయిల్ అయితే క్లీన్ గా బాడ్ రిక్వెస్ట్ ఎర్రర్ పంపుతాం
+
             return new ResponseEntity<>(Map.of("error", e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }

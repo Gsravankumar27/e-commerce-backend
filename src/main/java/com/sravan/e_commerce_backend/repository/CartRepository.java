@@ -7,6 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Long> {
-    // యూజర్ ఐడీ ద్వారా కార్ట్ ని వెతకడానికి (Derived Query మ్యాజిక్)
     Optional<Cart> findByUserId(Long userId);
 }

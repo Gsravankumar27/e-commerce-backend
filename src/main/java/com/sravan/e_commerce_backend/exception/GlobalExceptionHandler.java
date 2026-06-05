@@ -26,9 +26,4 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
-    // 3. Handle Generic Runtime Exceptions (400 Bad Request)
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Map<String, String>> handleRuntimeExceptions(RuntimeException ex) {
-        return new ResponseEntity<>(Map.of("error", ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
 }

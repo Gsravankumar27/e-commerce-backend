@@ -14,17 +14,14 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // 1. కొత్త కేటగిరీని సేవ్ చేయడానికి
     public Category createCategory(Category category) {
         return categoryRepository.save(category);
     }
 
-    // 2. అన్ని కేటగిరీలను లిస్ట్ చేయడానికి
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    // 3. ID ద్వారా కేటగిరీని వెతకడానికి
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + id));

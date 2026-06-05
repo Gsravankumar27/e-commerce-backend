@@ -17,10 +17,9 @@ public class Category {
     @Column(nullable = false, unique = true, length = 100)
     private String name;
 
-    // One Category can have Many Products
-    // mappedBy="category" ante Product class lo unna 'category' field ki link chestunnani ardham
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference // Infinite loop cascade ni prevent cheyadానికి (Jackson reference)
+    @JsonManagedReference
     private List<Product> products;
 
     // --- Getters and Setters ---

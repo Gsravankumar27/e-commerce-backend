@@ -25,7 +25,7 @@ public class OrderItem {
     private Integer quantity;
 
     @Column(nullable = false)
-    private BigDecimal price; // ఆర్డర్ కొనేటప్పటి ప్రైస్ సేవ్ చేయడానికి
+    private BigDecimal price;
 
     // --- Getters and Setters ---
     public Long getId() { return id; }

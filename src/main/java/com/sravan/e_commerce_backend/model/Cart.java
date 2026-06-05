@@ -13,12 +13,10 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // One-to-One Relation: ఒక యూజర్‌కి ఒకటే కార్ట్ ఉంటుంది
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // One-to-Many Relation: ఒక కార్ట్ లో చాలా ఐటమ్స్ (Products) ఉండొచ్చు
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<CartItem> items = new ArrayList<>();
